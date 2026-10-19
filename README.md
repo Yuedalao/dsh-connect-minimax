@@ -12,6 +12,12 @@
 dsh plugin --profile desktop add "https://github.com/Yuedalao/dsh-connect-minimax/releases/download/v0.2.2/dsh-connect-minimax.tgz"
 ```
 
+也可以把下面的地址添加到 DSH 的 **发现 → 索引源**：
+
+```text
+https://raw.githubusercontent.com/Yuedalao/dsh-connect-minimax/main/index.json
+```
+
 ## 工作方式
 
 1. 只读发现 `%USERPROFILE%\.minimax\auth\prod\cn\mcode-public\auth.json` 中的本机 MiniMax Code 凭据。
