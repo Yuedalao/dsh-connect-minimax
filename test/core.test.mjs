@@ -2,11 +2,14 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   MODELS,
+  contextWindowFor,
   credentialNeedsRefresh,
+  discoveryRows,
   mergeRefreshGrant,
   normalizeTokenGrant,
   parseAuthSnapshot,
   publicStatusFromSnapshot,
+  reasoningEffortFor,
   toPiModel
 } from "../lib/core.js";
 
@@ -102,4 +105,21 @@ test("model metadata matches the local MiniMax Code catalog", () => {
   assert.equal(m3.thinkingLevelMap.off, undefined);
   assert.equal(m3.contextWindow, 512_000);
   assert.equal(m3.maxTokens, 128_000);
+});
+
+test("native context and effort selections only accept advertised values", () => {
+  const flash = MODELS[0];
+  const m3 = MODELS[1];
+  const budgets = {
+    [flash.id]: 1_000_000,
+    [m3.id]: 750_000
+  };
+  assert.equal(contextWindowFor(flash, budgets), 1_000_000);
+  assert.equal(contextWindowFor(m3, budgets), 512_000);
+  assert.equal(toPiModel(flash, "http://127.0.0.1:1234", undefined, undefined, budgets).contextWindow, 1_000_000);
+  assert.equal(discoveryRows([m3], { [m3.id]: 1_000_000 })[0].contextWindow, 1_000_000);
+  assert.equal(reasoningEffortFor(flash, { [flash.id]: "default" }), "default");
+  assert.equal(reasoningEffortFor(m3, { [m3.id]: "invalid" }), undefined);
+  assert.deepEqual(flash.contextWindowOptions, [512_000, 1_000_000]);
+  assert.deepEqual(flash.effortOptions, ["default", "low", "medium", "high", "xhigh", "max"]);
 });

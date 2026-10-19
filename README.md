@@ -9,7 +9,7 @@
 ## 安装
 
 ```powershell
-dsh plugin --profile desktop add "https://github.com/Yuedalao/dsh-connect-minimax/releases/download/v0.2.2/dsh-connect-minimax.tgz"
+dsh plugin --profile desktop add "https://github.com/Yuedalao/dsh-connect-minimax/releases/download/v0.3.0/dsh-connect-minimax.tgz"
 ```
 
 也可以把下面的地址添加到 DSH 的 **发现 → 索引源**：
@@ -38,6 +38,11 @@ https://raw.githubusercontent.com/Yuedalao/dsh-connect-minimax/main/index.json
 
 模型 ID、上下文窗口和思考能力来自本机 MiniMax Code `config.yaml` 的实际配置。
 
+- `MiniMax-M3.1-Flash-Preview`、`MiniMax-M3` 支持在插件设置页选择 `512K` / `1M` 上下文，以及 `default` / `low` / `medium` / `high` / `xhigh` / `max` 原生推理等级。
+- `1M` 会带来更高用量；插件只修改 DSH 的上下文预算，不会改写或覆盖 MiniMax 登录。
+- `MiniMax-M2.7-highspeed`、`MiniMax-M2.7` 保持 `200K`。
+- 推理等级未固定时显示“跟随 DSH”，由 DSH 会话里的模型档位控制。
+
 ## DSH provider
 
 - Provider：`minimax-code-local`
@@ -56,9 +61,13 @@ https://raw.githubusercontent.com/Yuedalao/dsh-connect-minimax/main/index.json
     dataDir: C:\Users\<user>\.minimax
     region: cn
     maxOutputTokens: 128000
+    contextBudgets:
+      MiniMax-M3.1-Flash-Preview: 512000
+      MiniMax-M3: 512000
+    reasoningEfforts: {}
 ```
 
-设置页只展示本机登录状态、账号、凭据有效期、登录文件路径和模型列表，不提供 API Key 输入框、退出登录或删除凭据按钮。
+设置页可以选择每个模型的 DSH 上下文窗口和 MiniMax 原生推理等级。配置写入后立即刷新模型注册，不需要重启 DSH。页面不提供 API Key 输入框、退出登录或删除凭据按钮。
 
 ## 本地开发验证
 

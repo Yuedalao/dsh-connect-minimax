@@ -45,6 +45,52 @@ test("loopback proxy injects the local MiniMax bearer and required headers", asy
   assert.equal(calls[0].options.headers["anthropic-version"], "2023-06-01");
 });
 
+test("configured native effort overrides DSH with adaptive output_config", async (t) => {
+  let upstreamBody;
+  const auth = {
+    async status() {
+      return { connected: true, status: "connected" };
+    },
+    async getAccessToken() {
+      return { accessToken: "upstream-token", loginEpoch: "epoch", generation: 1 };
+    }
+  };
+  const proxy = createMiniMaxProxy({
+    auth,
+    resolveModelPolicy: (model) => model === "MiniMax-M3.1-Flash-Preview"
+      ? { reasoningEffort: "default" }
+      : {},
+    fetchImpl: async (_url, options) => {
+      upstreamBody = JSON.parse(options.body.toString("utf8"));
+      return new Response(JSON.stringify({ type: "message" }), {
+        status: 200,
+        headers: { "content-type": "application/json" }
+      });
+    }
+  });
+  await proxy.ready;
+  t.after(() => proxy.close());
+  const response = await fetch(`${proxy.baseUrl()}/v1/messages`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      "x-api-key": proxy.token()
+    },
+    body: JSON.stringify({
+      model: "MiniMax-M3.1-Flash-Preview",
+      messages: [{ role: "user", content: "hi" }],
+      output_config: { effort: "medium" },
+      stream: false
+    })
+  });
+  assert.equal(response.status, 200);
+  assert.deepEqual(upstreamBody.thinking, {
+    type: "adaptive",
+    display: "summarized"
+  });
+  assert.deepEqual(upstreamBody.output_config, { effort: "default" });
+});
+
 test("one upstream 401 triggers exactly one local credential refresh and retry", async (t) => {
   let fetchCount = 0;
   let refreshCount = 0;
