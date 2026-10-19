@@ -59,6 +59,18 @@
       },
       "versions": [
         {
+          "version": "0.3.0",
+          "publishTimestamp": 1792426867,
+          "source": {
+            "type": "git",
+            "url": "https://github.com/Yuedalao/dsh-connect-minimax.git",
+            "commit": "1ca7c82e2adc3123be6c69eaae08db28ea0ac769"
+          },
+          "engines": {
+            "dsh": ">=0.1.7-rc.1 <0.2.0-0 || >=0.2.0-rc.1 <0.2.1-0 || >=0.2.1-rc.1 <0.3.0-0"
+          }
+        },
+        {
           "version": "0.2.2",
           "publishTimestamp": 1792423582,
           "source": {
