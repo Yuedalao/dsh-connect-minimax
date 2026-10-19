@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.2
+
+- Add an explicit DSH runtime range for market indexes.
+- Add the standard format-1 market index.
+
 ## 0.2.1
 
 - Read the existing MiniMax Code sign-in instead of asking for an API key.

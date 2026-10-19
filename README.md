@@ -9,7 +9,7 @@
 ## 安装
 
 ```powershell
-dsh plugin --profile desktop add "https://github.com/Yuedalao/dsh-connect-minimax/releases/download/v0.2.1/dsh-connect-minimax.tgz"
+dsh plugin --profile desktop add "https://github.com/Yuedalao/dsh-connect-minimax/releases/download/v0.2.2/dsh-connect-minimax.tgz"
 ```
 
 ## 工作方式
