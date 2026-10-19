@@ -1,0 +1,76 @@
+{
+  "format": 1,
+  "title": {
+    "en": "Yuedalao DSH plugins",
+    "zh": "Yuedalao DSH 插件"
+  },
+  "description": {
+    "en": "DeepSeek Harness plugins published by Yuedalao.",
+    "zh": "Yuedalao 发布的 DeepSeek Harness 插件。"
+  },
+  "metadata": {
+    "categories": {
+      "provider": {
+        "title": {
+          "en": "Model providers",
+          "zh": "模型接入"
+        }
+      }
+    },
+    "labels": {
+      "web": {
+        "title": {
+          "en": "Web UI",
+          "zh": "Web 界面"
+        }
+      }
+    },
+    "sortKeys": {}
+  },
+  "plugins": [
+    {
+      "name": "dsh-connect-minimax",
+      "title": {
+        "en": "MiniMax Code local provider",
+        "zh": "MiniMax Code 本机模型接入"
+      },
+      "icon": "icons/dsh-connect-minimax-128.png",
+      "description": {
+        "en": "Connects the existing local MiniMax Code sign-in to DSH through a loopback reverse proxy without storing an API key or signing out.",
+        "zh": "读取本机 MiniMax Code 登录态，经本地回环反向代理接入 DSH；不保存 API Key，也不会退出登录。"
+      },
+      "author": "Yuedalao",
+      "homepage": "https://github.com/Yuedalao/dsh-connect-minimax#readme",
+      "repository": {
+        "url": "https://github.com/Yuedalao/dsh-connect-minimax"
+      },
+      "metadata": {
+        "category": "provider",
+        "keywords": [
+          "dsh-plugin",
+          "deepseek-harness",
+          "minimax",
+          "model-provider"
+        ],
+        "labels": [
+          "web"
+        ],
+        "sortKeys": {}
+      },
+      "versions": [
+        {
+          "version": "0.2.2",
+          "publishTimestamp": 1792423582,
+          "source": {
+            "type": "git",
+            "url": "https://github.com/Yuedalao/dsh-connect-minimax.git",
+            "commit": "f4036316190cb912514b9ea385724c0b741b12e6"
+          },
+          "engines": {
+            "dsh": ">=0.1.7-rc.1 <0.2.0-0 || >=0.2.0-rc.1 <0.2.1-0 || >=0.2.1-rc.1 <0.3.0-0"
+          }
+        }
+      ]
+    }
+  ]
+}
