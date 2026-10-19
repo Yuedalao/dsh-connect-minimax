@@ -1,0 +1,4 @@
+# Register both MiniMax routes without changing the profile's default model.
+- insert:
+    - id: dsh-connect-minimax
+      name: dsh-connect-minimax

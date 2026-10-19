@@ -1,0 +1,73 @@
+{
+  "name": "dsh-connect-minimax",
+  "displayName": "DSH Connect MiniMax",
+  "description": "把本机 MiniMax Code 登录态接入 DeepSeek Harness：本地回环反向代理调用 MiniMax Anthropic Messages 模型，不保存 API Key。",
+  "version": "0.2.1",
+  "author": "Yuedalao",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yuedalao/dsh-connect-minimax.git"
+  },
+  "homepage": "https://github.com/Yuedalao/dsh-connect-minimax#readme",
+  "bugs": {
+    "url": "https://github.com/Yuedalao/dsh-connect-minimax/issues"
+  },
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0"
+  },
+  "main": "lib/index.js",
+  "icon": "icons/dsh-connect-minimax-128.png",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "icons",
+    "assets",
+    "screenshots.json",
+    "cordis.patch.yml",
+    "README.md",
+    "CHANGELOG.md",
+    "SECURITY.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check lib/core.js && node --check lib/auth.js && node --check lib/proxy.js && node --check lib/index.js && node --check lib/client.js && node --test"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-renderer",
+        "@deepseek-ai/dsh-client-ui-settings",
+        "@deepseek-ai/dsh-client-ui-slots",
+        "@deepseek-ai/dsh-client-ui-settings-plugins",
+        "@deepseek-ai/dsh-client-ui-primitives",
+        "@deepseek-ai/dsh-client-locale"
+      ],
+      "platform": "web"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": ">=4.0.4 <5.0.0",
+    "@deepseek-ai/dsh-llm": ">=0.1.7-rc.1 <0.3.0-0",
+    "@deepseek-ai/dsh-llm-pi-ai": ">=0.1.7-rc.1 <0.3.0-0",
+    "@deepseek-ai/schemastery": ">=3.18.4 <4.0.0",
+    "@earendil-works/pi-ai": ">=1.1.0 <2.0.0",
+    "react": "^18.2.0"
+  },
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "minimax",
+    "model-provider"
+  ]
+}
