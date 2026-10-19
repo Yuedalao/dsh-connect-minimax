@@ -9,7 +9,7 @@
 ## 安装
 
 ```powershell
-dsh plugin --profile desktop add "https://github.com/Yuedalao/dsh-connect-minimax/releases/download/v0.3.0/dsh-connect-minimax.tgz"
+dsh plugin --profile desktop add "https://github.com/Yuedalao/dsh-connect-minimax/releases/download/v0.3.1/dsh-connect-minimax.tgz"
 ```
 
 也可以把下面的地址添加到 DSH 的 **发现 → 索引源**：
@@ -42,6 +42,8 @@ https://raw.githubusercontent.com/Yuedalao/dsh-connect-minimax/main/index.json
 - `1M` 会带来更高用量；插件只修改 DSH 的上下文预算，不会改写或覆盖 MiniMax 登录。
 - `MiniMax-M2.7-highspeed`、`MiniMax-M2.7` 保持 `200K`。
 - 推理等级未固定时显示“跟随 DSH”，由 DSH 会话里的模型档位控制。
+- DSH 模型选择器的 `MiniMax Code（本机登录）` 分组标题会追加真实积分余量（如 `MiniMax Code（本机登录） · 420`）。余额来自 MiniMax Code 桌面端同一只读接口，启动时读取一次并每 5 分钟刷新；读取失败时保留基础名称。
+- 余额查询不会保存或展示接口响应中的 API Key，只保留剩余积分、总量、已用量和积分回退开关。
 
 ## DSH provider
 

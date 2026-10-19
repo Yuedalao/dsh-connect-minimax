@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.1
+
+- Show the live MiniMax credit balance in the model-picker provider heading.
+- Refresh the heading at startup and every five minutes without changing sign-in.
+- Parse only balance fields from the official desktop billing response; never retain or expose its API-key field.
+
 ## 0.3.0
 
 - Add per-model 512K / 1M context budgets for MiniMax M3 and M3.1 Flash.
